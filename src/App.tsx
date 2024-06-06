@@ -1,10 +1,11 @@
 // import { useState } from 'react'
-import { Dispatch, useReducer } from "react"
-import { ActivityActions, activityReducer, initialState } from "./reducers/activity-reducer"
+import { useReducer } from "react"
+import { activityReducer, initialState } from "./reducers/activity-reducer"
 import Form from "./components/Form"
+import ActivityList from "./components/ActivityList"
 
 function App() {
-  const [state, dispatch] = useReducer<Dispatch<ActivityActions>>(activityReducer, initialState)
+  const [state, dispatch] = useReducer(activityReducer, initialState)
   return (
     <>
       <header className="bg-lime-600 py-3">
@@ -19,8 +20,16 @@ function App() {
         <div className="max-w-4xl mx-auto">
           <Form
             dispatch={dispatch}
+            state={state}
           />
         </div>
+      </section>
+
+      <section className="p-10 mx-auto max-w-4xl">
+        <ActivityList
+          activities={state.activities}
+          dispatch={dispatch}
+        />
       </section>
     </>
   )
