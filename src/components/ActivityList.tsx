@@ -18,11 +18,14 @@ export default function ActivityList ({
         categories.map( cat => cat.id === category? cat.name: '')
     )
     const categoryName = useMemo(() => (category: Activity['category']) => categoryPreprocess(category), [activities])
+    const isEmptyActivities = useMemo(()=> activities.length === 0,[activities])
     return(
         <>
             <h2 className="text-4xl font-bold text-slate-600 text-center">Comida y Actividades</h2>
 
-            {
+            { isEmptyActivities ? 
+                <p className="text-center text-lg text-gray-500 my-5">No hay actividades aún...</p>
+                :
                 activities.map( activity => (
                     <div key={activity.id} className="px-5 py-10 bg-white mt-5 flex justify-between">
                         <div className="space-y-2 relative">
