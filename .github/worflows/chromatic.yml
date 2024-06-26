@@ -2,7 +2,15 @@
 
 name: "Chromatic"
 
-on: push
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
 
 jobs:
   chromatic:
